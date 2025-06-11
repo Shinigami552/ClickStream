@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Stream - Entretenimento Ilimitado</title>
+    <!-- Inclui Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Azul escuro quase preto */
+            color: #e2e8f0; /* Cinza claro */
+        }
+        
+        /* Custom Button and Card Styles */
+        .gradient-button {
+            background-image: linear-gradient(to right, #6366f1, #a855f7, #ec4899); /* Gradiente roxo-rosa */
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .gradient-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.5);
+        }
+        .card-bg {
+            background-color: #1e293b; /* Azul escuro */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 1rem; /* Equivalente a rounded-xl */
+        }
+        .card-bg:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        .feature-icon {
+            color: #a855f7; /* Roxo */
+            filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.6));
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+    background-image: 
+      linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)),url('images/teste.jpg.webp');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+        }
+        .hero-content {
+            z-index: 10;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Keyframe Animations for Hero */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceIn {
+             0%, 20%, 40%, 60%, 80%, 100% { transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); }
+             0% { opacity: 0; transform: scale3d(.3, .3, .3); } 20% { transform: scale3d(1.1, 1.1, 1.1); } 40% { transform: scale3d(.9, .9, .9); } 60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); } 80% { transform: scale3d(.97, .97, .97); } 100% { opacity: 1; transform: scale3d(1, 1, 1); }
+        }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-bounce-in { animation: bounceIn 1s forwards; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .opacity-0 { opacity: 0; }
+        
+        /* Testimonials Carousel Styles */
+        @keyframes scrollTestimonials { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .animate-scroll-testimonials {
+            animation: scrollTestimonials 40s linear infinite; will-change: transform;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .testimonial-card img { border: 3px solid #a855f7; box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
+
+        /* FAQ (Accordion) Styles */
+        .accordion-item { background-color: #1e293b; border-radius: 0.75rem; margin-bottom: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .accordion-button {
+            width: 100%; padding: 1.25rem 1.5rem; text-align: left; font-weight: 600; font-size: 1.1rem; color: #e2e8f0;
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: none; background: none; transition: background-color 0.3s ease;
+        }
+        .accordion-button:hover { background-color: #334155; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out; padding: 0 1.5rem; color: #cbd5e1; }
+        .accordion-content.active { max-height: 500px; padding-bottom: 1.25rem; }
+        .accordion-arrow { transition: transform 0.3s ease-in-out; }
+        .accordion-button[aria-expanded="true"] .accordion-arrow { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center px-4 py-2">
+            <a href="#" class="text-3xl font-extrabold text-white rounded-xl p-2 hover:text-indigo-300 transition-colors transform hover:scale-105 duration-200 ease-in-out tracking-wide flex items-center uppercase">
+                <svg class="w-10 h-10 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="#a855f7" stroke-width="2"/><path d="M10 7L16 12L10 17V7Z" fill="#a855f7"/></svg>
+                CLICK STREAM
+            </a>
+            <nav class="hidden md:flex">
+                <ul class="flex space-x-8 text-lg font-medium items-center">
+                    <li><a href="#recursos" class="hover:text-indigo-400 transition-colors">Recursos</a></li>
+                    <li><a href="#planos" class="hover:text-indigo-400 transition-colors">Planos</a></li>
+                    <li><a href="#depoimentos" class="hover:text-indigo-400 transition-colors">Depoimentos</a></li>
+                    <li><a href="#faq" class="hover:text-indigo-400 transition-colors">Dúvidas</a></li>
+                    <li><a href="#contato" class="gradient-button text-white font-bold py-2 px-6 rounded-full text-md shadow-lg">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20">
+        <div class="hero-content">
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 opacity-0 animate-fade-in-up">Liberte seu entretenimento com <span class="text-indigo-400">CLICK STREAM.</span></h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 opacity-0 animate-fade-in-up delay-200">Uma vasta coleção de filmes, séries e documentários esperando por você.</p>
+            <a href="#planos" class="gradient-button text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg opacity-0 animate-bounce-in delay-400">Comece a Assistir Agora!</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="recursos" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-16">Por que escolher CLICK STREAM?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="card-bg p-8 rounded-xl shadow-xl border-b-4 border-indigo-500 flex flex-col items-center"><div class="text-6xl feature-icon mb-6">🎬</div><h3 class="text-2xl font-semibold text-white mb-4">Conteúdo Sem Fim</h3><p class="text-gray-300">Acesse uma biblioteca em constante crescimento com milhares de filmes, séries e documentários.</p></div>
+                <div class="card-bg p-8 rounded-xl shadow-xl border-b-4 border-pink-500 flex flex-col items-center"><div class="text-6xl feature-icon mb-6">💎</div><h3 class="text-2xl font-semibold text-white mb-4">Qualidade Impecável</h3><p class="text-gray-300">Desfrute de sua programação favorita em 4K Ultra HD e som cristalino.</p></div>
+                <div class="card-bg p-8 rounded-xl shadow-xl border-b-4 border-purple-500 flex flex-col items-center"><div class="text-6xl feature-icon mb-6">🌍</div><h3 class="text-2xl font-semibold text-white mb-4">Assista Onde Quiser</h3><p class="text-gray-300">Disponível em Smart TVs, celulares, tablets, computadores e consoles.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="planos" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-16">Escolha o plano ideal para você</h2>
+            <div class="flex flex-wrap justify-center gap-10">
+                <div class="card-bg p-8 rounded-xl shadow-2xl w-full md:w-1/3 max-w-sm border-2 border-purple-500 transform hover:scale-105 transition-transform duration-300"><h3 class="text-2xl font-bold text-white uppercase">Plano Mensal</h3><p class="text-indigo-400 font-semibold mt-2">Flexibilidade total</p><div class="my-8"><span class="text-5xl font-extrabold text-white">R$19,99</span><span class="text-gray-400">/mês</span></div><ul class="text-left space-y-3 text-gray-300 mb-8"><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>+150 Mil Conteúdos</li><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Canais SD, HD, FHD e 4K</li><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>2 Acesso Simultâneo</li><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Suporte 24/7</li></ul><a href="#contato" class="gradient-button w-full text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">Quero este Plano</a></div>
+                <div class="card-bg p-8 rounded-xl shadow-2xl w-full md:w-1/3 max-w-sm border-2 border-indigo-500 relative overflow-hidden"><div class="absolute top-0 right-0 bg-indigo-500 text-white text-sm font-bold px-4 py-1 transform translate-x-1/4 -translate-y-1/4 rotate-45">MAIS POPULAR</div><h3 class="text-2xl font-bold text-white uppercase">Plano Trimestral</h3><p class="text-pink-400 font-semibold mt-2">Melhor Custo-Benefício</p><div class="my-8"><span class="text-5xl font-extrabold text-white">R$ 49,90</span><span class="text-gray-400">/tri</span></div><ul class="text-left space-y-3 text-gray-300 mb-8"><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><strong>Todos os benefícios do mensal </strong> </li><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Economize 1 meses!</li><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Acesso prioritário a novidades</li><li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Suporte Premium</li></ul><a href="#contato" class="gradient-button w-full text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">Quero Economizar</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="depoimentos" class="py-20 bg-gray-800 overflow-hidden">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-16">O que nossos clientes dizem</h2>
+            <div class="relative w-full overflow-hidden">
+                <div class="flex animate-scroll-testimonials">
+                    <div class="flex-shrink-0 w-full md:w-1/3 p-4 testimonial-card"><div class="card-bg p-8 rounded-lg"><img src="https://placehold.co/100x100/e2e8f0/0f172a?text=JR" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Cliente 1"><p class="text-gray-300 mb-4">"A qualidade da imagem é surreal. Parece que estou no cinema! Recomendo 100%."</p><h4 class="font-bold text-lg text-white">João Ricardo</h4><p class="text-indigo-400">Assinante desde 2024</p></div></div>
+                    <div class="flex-shrink-0 w-full md:w-1/3 p-4 testimonial-card"><div class="card-bg p-8 rounded-lg"><img src="https://placehold.co/100x100/e2e8f0/0f172a?text=MS" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Cliente 2"><p class="text-gray-300 mb-4">"Finalmente um serviço que não trava na hora do jogo. O suporte também é super rápido!"</p><h4 class="font-bold text-lg text-white">Mariana Silva</h4><p class="text-indigo-400">Assinante há 8 meses</p></div></div>
+                    <div class="flex-shrink-0 w-full md:w-1/3 p-4 testimonial-card"><div class="card-bg p-8 rounded-lg"><img src="https://placehold.co/100x100/e2e8f0/0f172a?text=PF" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Cliente 3"><p class="text-gray-300 mb-4">"A variedade de filmes e séries é gigante. Todo dia tem algo novo pra assistir."</p><h4 class="font-bold text-lg text-white">Pedro Ferreira</h4><p class="text-indigo-400">Assinante fiel</p></div></div>
+                    <div class="flex-shrink-0 w-full md:w-1/3 p-4 testimonial-card"><div class="card-bg p-8 rounded-lg"><img src="https://placehold.co/100x100/e2e8f0/0f172a?text=JR" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Cliente 1"><p class="text-gray-300 mb-4">"A qualidade da imagem é surreal. Parece que estou no cinema! Recomendo 100%."</p><h4 class="font-bold text-lg text-white">João Ricardo</h4><p class="text-indigo-400">Assinante desde 2024</p></div></div>
+                    <div class="flex-shrink-0 w-full md:w-1/3 p-4 testimonial-card"><div class="card-bg p-8 rounded-lg"><img src="https://placehold.co/100x100/e2e8f0/0f172a?text=MS" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Cliente 2"><p class="text-gray-300 mb-4">"Finalmente um serviço que não trava na hora do jogo. O suporte também é super rápido!"</p><h4 class="font-bold text-lg text-white">Mariana Silva</h4><p class="text-indigo-400">Assinante há 8 meses</p></div></div>
+                    <div class="flex-shrink-0 w-full md:w-1/3 p-4 testimonial-card"><div class="card-bg p-8 rounded-lg"><img src="https://placehold.co/100x100/e2e8f0/0f172a?text=PF" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Cliente 3"><p class="text-gray-300 mb-4">"A variedade de filmes e séries é gigante. Todo dia tem algo novo pra assistir."</p><h4 class="font-bold text-lg text-white">Pedro Ferreira</h4><p class="text-indigo-400">Assinante fiel</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4"><h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">Perguntas Frequentes</h2><div class="max-w-4xl mx-auto"><div class="accordion-item"><button class="accordion-button" aria-expanded="false"><span>O QUE É IPTV E P2P?</span><svg class="accordion-arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content"><p class="pt-2">IPTV e P2P é a junção de um serviço de televisão com o de internet. Em vez de receber o sinal pela antena, você recebe via internet, com mais qualidade.</p></div></div><div class="accordion-item"><button class="accordion-button" aria-expanded="false"><span>POSSO TESTAR ANTES DE ASSINAR?</span><svg class="accordion-arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content"><p class="pt-2">Sim. Disponibilizamos um teste grátis de 3 horas para conhecer nosso conteúdo e verificar a compatibilidade com a sua internet.</p></div></div><div class="accordion-item"><button class="accordion-button" aria-expanded="false"><span>COMO FUNCIONA O PAGAMENTO?</span><svg class="accordion-arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content"><p class="pt-2">Temos planos mensais e anuais com desconto. Aceitamos: PIX, Transferência, Depósito e Cartão de Crédito.</p></div></div><div class="accordion-item"><button class="accordion-button" aria-expanded="false"><span>COMO FUNCIONA AS RENOVAÇÕES?</span><svg class="accordion-arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content"><p class="pt-2">Nossas assinaturas não possuem taxas, multas ou fidelidade, podendo ser canceladas a qualquer momento.</p></div></div><div class="accordion-item"><button class="accordion-button" aria-expanded="false"><span>POSSO ASSISTIR EM MAIS DE UMA TELA?</span><svg class="accordion-arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content"><p class="pt-2">Pode configurar em vários dispositivos, mas para assistir simultaneamente, é preciso adquirir um ponto extra.</p></div></div></div></div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section id="contato" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Pronto para a melhor experiência?</h2>
+            <p class="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">Fale conosco agora, solicite seu teste grátis e venha fazer parte da família CLICK STREAM!</p>
+            <a href="https://wa.me/message/NRPO3MRM3Z6WI1?text=Olá!%20Gostaria%20de%20solicitar%20um%20teste%20grátis." target="_blank" class="gradient-button text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg inline-flex items-center">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.433-9.89-9.889-9.89-5.452 0-9.887 4.428-9.889 9.89-.001 2.235.652 4.395 1.849 6.22l-1.072 3.912 3.912-1.074z"/></svg>
+                Fale Conosco no WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="container mx-auto px-4 text-center"><p>&copy; 2024 CLICK STREAM. Todos os direitos reservados.</p><p class="text-sm mt-2">Este site não hospeda nenhum vídeo em seu servidor. Todo o conteúdo é disponibilizado por terceiros de forma aberta na internet.</p></div>
+    </footer>
+    
+    <!-- JavaScript for Accordion -->
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    button.setAttribute('aria-expanded', !(button.getAttribute('aria-expanded') === 'true'));
+                    content.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
